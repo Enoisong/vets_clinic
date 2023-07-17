@@ -3,7 +3,6 @@
 CREATE DATABASE vet_clinic;
 
 USE vet_clinic;
-
 CREATE TABLE animals (
   id INTEGER,
   name VARCHAR(255),
