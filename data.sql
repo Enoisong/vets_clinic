@@ -13,3 +13,4 @@ VALUES
   (9, 'Boarmon', '2005-06-07', 20.4, TRUE, 7, NULL);
   (10, 'Blossom', '1998-10-13', 17, TRUE, 3, NULL);
   (11, 'Ditto', '2022-05-14', 22, TRUE, 4, NULL); 
+  
