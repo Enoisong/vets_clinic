@@ -212,17 +212,19 @@ ORDER BY v.visit_date DESC
 LIMIT 1;
 
 -- How many visits were with a vet that did not specialize in that animal's species?
-SELECT COUNT(*) AS number_of_visits_without_specialty
+SELECT COUNT(*) AS count_not_specialized
 FROM visits v
-LEFT JOIN specializations sp ON v.vet_id = sp.vet_id AND v.animal_id = sp.species_id
-WHERE sp.vet_id IS NULL;
+JOIN animals a ON a.id = v.animal_id
+JOIN vets vt on vt.id = v.vet_id
+LEFT JOIN specializations sp ON sp.vet_id = vt.id AND sp.species_id = a.species_id
+WHERE sp.vet_id is NULL;
 
 -- What specialty should Maisy Smith consider getting? Look for the species she gets the most.
-vet_clinics=# SELECT s.name, COUNT(*) AS num_visits
-vet_clinics-# FROM visits AS v
-vet_clinics-# INNER JOIN animals AS a ON v.animal_id = a.id
-vet_clinics-# INNER JOIN species AS s ON a.species_id = s.id
-vet_clinics-# WHERE v.vet_id IN (SELECT id FROM vets WHERE name = 'Maisy Smith')
-vet_clinics-# GROUP BY s.name
-vet_clinics-# ORDER BY num_visits DESC
-vet_clinics-# LIMIT 1;
+ SELECT s.name, COUNT(*) AS num_visits
+ FROM visits AS v
+ INNER JOIN animals AS a ON v.animal_id = a.id
+ INNER JOIN species AS s ON a.species_id = s.id
+ WHERE v.vet_id IN (SELECT id FROM vets WHERE name = 'Maisy Smith')
+ GROUP BY s.name
+ ORDER BY num_visits DESC
+ LIMIT 1;
