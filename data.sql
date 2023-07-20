@@ -51,4 +51,131 @@ VALUES
       END
 
     );
-  
+
+    -- Insert the provided data for the vets into the vets table
+
+    INSERT INTO vets (name, age, date_of_graduation) VALUES
+    ('William Tatcher', 45, '2000-04-23'),
+
+    INSERT INTO vets (name, age, date_of_graduation) VALUES
+    ('Maisy Smith', 26, '2019-01-17'),
+
+    INSERT INTO vets (name, age, date_of_graduation) VALUES
+    ('Stephanie Mendez', 64, '1981-05-04'),
+
+    INSERT INTO vets (name, age, date_of_graduation) VALUES
+    ('Jack Harkness', 38, '2008-06-08');
+
+    -- Insert the provided data for specialties into the "specializations" join table
+
+    -- Get the vet_id for William Tatcher
+    INSERT INTO specializations (vet_id, species_id)
+VALUES
+    (
+    (SELECT id FROM vets WHERE name = 'William Tatcher'), 
+    (SELECT id FROM species WHERE name = 'Pokemon')
+    );
+
+    -- Get the vet_id for Stephanie Mendez
+    INSERT INTO specializations (vet_id, species_id)
+    VALUES (
+    (SELECT id FROM vets WHERE name = 'Stephanie Mendez'), 
+    (SELECT id FROM species WHERE name = 'Digimon')
+    );
+
+    INSERT INTO specialiations (vet_id, species_id)
+    VALUES (
+     (SELECT id FROM vets WHERE name = 'Stephanie Mendez'),
+     (SELECT id FROM species WHERE name = 'Pokemon')
+     );
+
+     -- Get the vet_id for Jack Harkness
+    INSERT INTO specialiations (vet_id, species_id)
+    VALUES (
+     (SELECT id FROM vets WHERE name = 'Jack Harkness'),
+     (SELECT id FROM species WHERE name = 'Digimon')
+     );
+
+     -- Insert the provided data for visits into the "visits" join table
+
+     -- Get the animal_id and vet_id for each visit
+
+    -- Agumon visited William Tatcher
+     INSERT INTO visits (animal_id, vet_id, visit_date)
+     VALUES (     
+       (SELECT id FROM animals WHERE name = 'Agumon'), 
+       (SELECT id FROM vets WHERE name = 'William Tatcher'), 
+       '2020-05-24'
+    ),
+
+    -- Agumon visited Stephanie Mendez
+     INSERT INTO visits (animal_id, vet_id, visit_date)
+     VALUES ( 
+       (SELECT id FROM animals WHERE name = 'Agumon'), 
+       (SELECT id FROM vets WHERE name = 'Stephanie Mendez'), 
+       '2020-07-22'
+    ),
+
+     -- Gabumon visited Jack Harkness
+     INSERT INTO visits (animal_id, vet_id, visit_date)
+     VALUES ( 
+       (SELECT id FROM animals WHERE name = 'Gabumon'),
+       (SELECT id FROM vets WHERE name = 'Jack Harkness'),
+       '2021-02-02'
+    ), 
+    
+    -- Pikachu visited Maisy Smith on multiple dates
+     INSERT INTO visits (animal_id, vet_id, visit_date)
+     VALUES 
+       ((SELECT id FROM animals WHERE name = 'Pikachu'), (SELECT id FROM vets WHERE name = 'Maisy Smith'), '2020-01-05'),
+       ((SELECT id FROM animals WHERE name = 'Pikachu'), (SELECT id FROM vets WHERE name = 'Maisy Smith'), '2020-03-08'),
+       ((SELECT id FROM animals WHERE name = 'Pikachu'), (SELECT id FROM vets WHERE name = 'Maisy Smith'), '2020-05-14'),
+    
+     -- Devimon visited Stephanie Mendez
+     INSERT INTO visits (animal_id, vet_id, visit_date)
+     VALUES (     
+       (SELECT id FROM animals WHERE name = 'Devimon'), 
+       (SELECT id FROM vets WHERE name = 'Stephanie Mendez'), 
+       '2021-05-04'
+    ),
+     -- Charmander visited Jack Harkness
+     INSERT INTO visits (animal_id, vet_id, visit_date)
+     VALUES ( 
+       (SELECT id FROM animals WHERE name = 'Charmander'),
+       (SELECT id FROM vets WHERE name = 'Jack Harkness'),
+       '2021-02-24'
+    ),
+     -- Plantmon visited Maisy Smith and William Tatcher on multiple dates
+     INSERT INTO visits (animal_id, vet_id, visit_date)
+     VALUES    
+       ((SELECT id FROM animals WHERE name = 'Plantmon'), (SELECT id FROM vets WHERE name = 'Maisy Smith'),'2019-12-21'),
+       ((SELECT id FROM animals WHERE name = 'Plantmon'), (SELECT id FROM vets WHERE name = 'William Tatcher'), '2020-08-10'),
+       ((SELECT id FROM animals WHERE name = 'Plantmon'), (SELECT id FROM vets WHERE name = 'Maisy Smith'), '2021-04-07'),
+
+    -- Squirtle visited Stephanie Mendez
+     INSERT INTO visits (animal_id, vet_id, visit_date)
+     VALUES (    
+       (SELECT id FROM animals WHERE name = 'Squirtle'),
+       (SELECT id FROM vets WHERE name = 'Stephanie Mendez'),
+       '2019-09-29'
+      ),
+
+      -- Angemon visited Jack Harkness on multiple dates
+     INSERT INTO visits (animal_id, vet_id, visit_date)
+     VALUES
+    ((SELECT id FROM animals WHERE name = 'Angemon'), (SELECT id FROM vets WHERE name = 'Jack Harkness'), '2020-10-03'),
+    ((SELECT id FROM animals WHERE name = 'Angemon'), (SELECT id FROM vets WHERE name = 'Jack Harkness'), '2020-11-04'),
+    
+    -- Boarmon visited Maisy Smith on multiple dates
+     INSERT INTO visits (animal_id, vet_id, visit_date)
+     VALUES     
+    ((SELECT id FROM animals WHERE name = 'Boarmon'), (SELECT id FROM vets WHERE name = 'Maisy Smith'), '2019-01-24'),
+    ((SELECT id FROM animals WHERE name = 'Boarmon'), (SELECT id FROM vets WHERE name = 'Maisy Smith'), '2019-05-15'),
+    ((SELECT id FROM animals WHERE name = 'Boarmon'), (SELECT id FROM vets WHERE name = 'Maisy Smith'), '2020-02-27'),
+    ((SELECT id FROM animals WHERE name = 'Boarmon'), (SELECT id FROM vets WHERE name = 'Maisy Smith'), '2020-08-03'),
+    
+    -- Blossom visited Stephanie Mendez and William Tatcher
+     INSERT INTO visits (animal_id, vet_id, visit_date)
+     VALUES     
+    ((SELECT id FROM animals WHERE name = 'Blossom'), (SELECT id FROM vets WHERE name = 'Stephanie Mendez'), '2020-05-24'),
+    ((SELECT id FROM animals WHERE name = 'Blossom'), (SELECT id FROM vets WHERE name = 'William Tatcher'), '2021-01-11');
