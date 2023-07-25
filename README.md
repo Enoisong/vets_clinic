@@ -1,7 +1,6 @@
-![image](https://img.shields.io/badge/Microverse-blueviolet)
+![image](https://github.com/Enoisong/vets_clinic/blob/dev/drawSQL-vet-clinics-export-2023-07-25%20(1).png)
 
-# vet_clinic
-<a name="readme-top"></a>
+ <a name="readme-top"></a>
  # 📗 Table of Contents
 - [📖 About the Project](#aboVut-project)
   - [🛠 Built With](#built-with)
